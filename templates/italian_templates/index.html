@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Aulabook</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="https://simonepagano.altervista.org/aulabook/favicon.png">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+           <a class="navbar-brand" href="/">
+				<img src="https://simonepagano.altervista.org/aulabook/Aulabook.png" alt="AULABOOK Logo" height="30">
+			</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/aggiungi_prenotazione">Effettua una prenotazione</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/recupera_prenotazione">Recupera prenotazione</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/segnalazione">Effettua una segnalazione</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="/visualizza">
+						<button class="btn btn-primary">Login</button>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+    </nav>
+    <div class="container mt-5">
+        <h1><b>{{ nomelab }} prenotazione online</b></h1>
+        <hr>
+		
+		        <h4>Benvenuto nello strumento online di prenotazione delle aule e laboratori del {{istituto}}.</h4>
+				<p> In questo momento ti trovi nello strumento di prenotazione del seguente laboratorio: <i>{{nomelab}}</i>, il responsabile è {{responsabile}} e rimane disponibile al seguente indirizzo e-mail: <a href="mailto:{{indirizzo_responsabile}}">{{indirizzo_responsabile}} </a>.</p>
+		<hr>
+				<p>Prima di prenotare ti invitiamo a prendere visione del <a href="/regolamento">regolamento del laboratorio</a> in cui ti recherai.</p>
+		<hr>
+		<h4 class="text-center"><b>Azioni rapide</b></h4>
+    <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/aggiungi_prenotazione" class="btn btn-primary btn-block">Effettua una prenotazione adesso</a>
+            </div>
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/regolamento" class="btn btn-primary btn-block">Leggi il regolamento</a>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <a href="/segnalazione" class="btn btn-primary btn-block">Effettua una segnalazione</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/recupera_prenotazione" class="btn btn-primary btn-block">Recupera o elimina una prenotazione</a>
+            </div>
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/registro_pubblico" class="btn btn-primary btn-block">Registro pubblico prenotazioni</a>
+            </div>
+            <div class="col-12 col-md-4 mb-3"> 
+                <a href="/visualizza" class="btn btn-primary btn-block">Accesso amministratore</a>
+            </div>
+        </div>
+    </div>		
+<hr>
+
+<div style="height: 100px;"></div>
+
+    <!-- Include Bootstrap and jQuery scripts at the end of your HTML file -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<style>
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa; /* Cambia il colore di sfondo a tuo piacimento */
+        text-align: center;
+        padding: 10px 0;
+    }
+</style>
+
+<footer>
+    <p>&copy; 2023 AULABOOK - <a href="https://www.aulabook.com">aulabook.com</a> | Powered by <a href="https://www.paganosimone.com">Simone Pagano</a></p>
+</footer>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effettua una segnalazione - Aulabook</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+           <a class="navbar-brand" href="/">
+				<img src="https://simonepagano.altervista.org/aulabook/Aulabook.png" alt="AULABOOK Logo" height="30">
+			</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/aggiungi_prenotazione">Effettua una prenotazione</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/recupera_prenotazione">Recupera prenotazione</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/segnalazione">Effettua una segnalazione</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="/visualizza">
+						<button class="btn btn-primary">Login</button>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+    </nav>
+    <div class="container mt-5">
+        <h1><b>Submit a report</b></h1>
+        <hr>
+        <form method="POST" action="/segnalazione">
+            <div class="form-group">
+                <label for="codice_identificativo">Enter the identification code received in the confirmation email to add a report.</label>
+                <input type="text" class="form-control" id="codice_identificativo" name="codice_identificativo" required>
+                <button type="button" class="btn btn-primary mt-2" id="caricaPrenotazione">Look for reservation</button>
+            </div>
+            <div id="prenotazioneContainer" style="display: none;">
+                <hr>
+                <div class="form-group">
+                    <label for="nome">First name:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="cognome">Last name:</label>
+                    <input type="text" class="form-control" id="cognome" name="cognome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="segnalazione">Report (maximum 1000 characters):</label>
+                    <textarea class="form-control" id="segnalazione" name="segnalazione" rows="5" maxlength="1000" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="inviaSegnalazione">Submit report</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#caricaPrenotazione').click(function() {
+                var codiceIdentificativo = $('#codice_identificativo').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/carica_prenotazione?codice_identificativo=' + codiceIdentificativo,
+                    success: function(response) {
+                        if (response) {
+                            $('#nome').val(response.nome);
+                            $('#cognome').val(response.cognome);
+                            $('#email').val(response.email);
+                            $('#segnalazione').val(response.segnalazione);
+							$('#nome').prop('readonly', true);
+							$('#cognome').prop('readonly', true);
+							$('#email').prop('readonly', true);
+							
+                            $('#prenotazioneContainer').show();
+
+                            if (response.segnalazione) {
+                                $('#segnalazione').prop('readonly', true);
+                                $('#inviaSegnalazione').prop('disabled', true);
+                            } else {
+                                $('#segnalazione').prop('readonly', false);
+                                $('#inviaSegnalazione').prop('disabled', false);
+                            }
+                        } else {
+                            alert('Prenotazione non trovata.');
+                        }
+                    },
+                    error: function(error) {
+                        alert('Si è verificato un errore durante il caricamento della prenotazione.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
