@@ -66,7 +66,6 @@ def generate_random_code():
     characters = string.ascii_uppercase + string.digits
     return ''.join(secrets.choice(characters) for _ in range(6))
 
-# Modello per le prenotazioni
 class Prenotazione(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
